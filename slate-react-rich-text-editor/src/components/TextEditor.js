@@ -34,9 +34,38 @@ export default class TextEditor extends Component {
         this.setState({ value })
     }
 
+    onKeyDown = (e, change) => {
+        /*
+        we want all our commands to start with the user pressing ctrl,
+        if they don't--we cancel the action.
+        */
+
+        if (!e.ctrlKey) {
+            return;
+        }
+
+        e.preventDefault()
+
+        /* Decide what to do based on the key code... */
+        switch (e.key) {
+            /* When "b" is pressed, add a "bold" mark to the text. */
+            case 'b': {
+                change.addMark('bold')
+
+                return true
+            }
+        }
+
+        console.log(e.key)
+    }
+
     render() {
         return(
-            <Editor value={this.state.value} onChange={this.onChange} />
+            <Editor
+                value={this.state.value}
+                onChange={this.onChange}
+                onKeyDown={this.onKeyDown}
+            />
         )
     }
 }
