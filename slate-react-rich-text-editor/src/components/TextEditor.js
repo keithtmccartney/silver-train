@@ -4,6 +4,9 @@ import { Value } from 'slate'
 import Icon from 'react-icons-kit';
 import { bold } from 'react-icons-kit/feather/bold';
 import { italic } from 'react-icons-kit/feather/italic';
+import { underline } from 'react-icons-kit/feather/underline';
+import { code } from 'react-icons-kit/feather/code';
+import { list } from 'react-icons-kit/feather/list';
 import { BoldMark, ItalicMark, FormatToolbar } from './index';
 
 // Create our initial value...
@@ -63,6 +66,21 @@ export default class TextEditor extends Component {
 
                 return true
             }
+            case 'u': {
+                change.toggleMark('underline')
+
+                return true
+            }
+            case 'c': {
+                change.toggleMark('code')
+
+                return true
+            }
+            case 'l': {
+                change.toggleMark('list')
+
+                return true
+            }
             default: {
                 return;
             }
@@ -77,6 +95,16 @@ export default class TextEditor extends Component {
                 return<BoldMark {...props} />
             case 'italic':
                 return <ItalicMark {...props} />
+            case 'underline':
+                return <u {...props.attributes}>{props.children}</u>;
+            case 'code':
+                return <code {...props.attributes}>{props.children}</code>;
+            case 'list':
+                return (
+                    <ul {...props.attributes}>
+                        <li>{props.children}</li>
+                    </ul>
+                );
         }
     }
 
@@ -113,6 +141,18 @@ export default class TextEditor extends Component {
 
                     <button className="tooltip-icon-button" onPointerDown={(e) => this.onMarkClick(e, 'italic')}>
                         <Icon icon={italic} />
+                    </button>
+
+                    <button className="tooltip-icon-button" onPointerDown={(e) => this.onMarkClick(e, 'underline')}>
+                        <Icon icon={underline} />
+                    </button>
+
+                    <button className="tooltip-icon-button" onPointerDown={(e) => this.onMarkClick(e, 'code')}>
+                        <Icon icon={code} />
+                    </button>
+
+                    <button className="tooltip-icon-button" onPointerDown={(e) => this.onMarkClick(e, 'list')}>
+                        <Icon icon={list} />
                     </button>
                 </FormatToolbar>
 
