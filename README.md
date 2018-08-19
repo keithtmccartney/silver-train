@@ -7,6 +7,8 @@ Grab the article at [https://codeburst.io/lets-build-a-customizable-rich-text-ed
 
 * Check out [this](https://css-tricks.com/snippets/css/system-font-stack/) clever explanation by css-tricks for more in detail
 * If you're unsure about props.children — [this](https://learn.co/lessons/react-this-props-children) article is good at explaining the concept behind children props in React. ✌️
+* Which event listener should we use? There are bazillion options out there like onClick, onMouseDown, [touchend](https://developer.mozilla.org/en-US/docs/Web/Events/touchend)
+* A new event listener was introduced in [React version 16.4](https://reactjs.org/blog/2018/05/23/react-v-16-4.html). The event listener has a particular name — pointer event. In a nutshell, instead of writing an event listener for the mouse, touch surface and the pen we use a different approach. That approach uses the all 3-in-1 solution, compatible with all devices ([👆 Pointer events with React — The why, how, and what?](https://medium.com/@wesharehoodies/pointer-events-with-react-the-why-how-what-617a5b51dbb2))
 
 ## What are some of the key features a rich text editor has? Hmm — let's see (some of this is still being worked-on):
 

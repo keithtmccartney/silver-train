@@ -80,15 +80,38 @@ export default class TextEditor extends Component {
         }
     }
 
+    onMarkClick = (e, type) => {
+        /* disabling browser default behaviour like page refresh, etc */
+        e.preventDefault();
+
+        /* grabbing the this.state.value
+        const { value } = this.state
+        | is the same as |
+        const value = this.state.value
+        */
+        const { value } = this.state;
+
+        /* applying the formatting on the selected text
+        which the desired formatting
+        the slate model has built in functions to manipulate and format the data
+        */
+        const change = value.change().toggleMark(type);
+
+        /*
+        calling the onChange method we declared
+        */
+        this.onChange(change);
+    }
+
     render() {
         return(
             <Fragment>
                 <FormatToolbar>
-                    <button className="tooltip-icon-button">
+                    <button className="tooltip-icon-button" onPointerDown={(e) => this.onMarkClick(e, 'bold')}>
                         <Icon icon={bold} />
                     </button>
 
-                    <button className="tooltip-icon-button">
+                    <button className="tooltip-icon-button" onPointerDown={(e) => this.onMarkClick(e, 'italic')}>
                         <Icon icon={italic} />
                     </button>
                 </FormatToolbar>
